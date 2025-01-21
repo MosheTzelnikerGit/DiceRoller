@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +15,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var btnRoll: Button
     var rolledNumber = 0
 
-    // SharedPreferences
     lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,15 +58,34 @@ class MainActivity : AppCompatActivity() {
     private fun checkGuess() {
         val userGuess = etGuess.text.toString().toIntOrNull()
         if (userGuess != null && userGuess in 1..6) {
-            if (userGuess == rolledNumber) {
-                Toast.makeText(this, "Correct! You guessed $userGuess!", Toast.LENGTH_SHORT).show()
+            val message = if (userGuess == rolledNumber) {
+                "Correct! You guessed $userGuess!"
             } else {
-                Toast.makeText(this, "Wrong guess! The correct number was $rolledNumber.", Toast.LENGTH_SHORT).show()
+                "Wrong guess! The correct number was $rolledNumber."
             }
+
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Guess Result")
+            builder.setMessage(message)
+            builder.setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+            builder.setCancelable(false) // ניתן לשים על false כדי למנוע סגירה בטעות
+            builder.show()
+
         } else {
-            Toast.makeText(this, "Please enter a valid number between 1 and 6.", Toast.LENGTH_SHORT).show()
+            // במקרה של מספר לא תקין
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Invalid Input")
+            builder.setMessage("Please enter a valid number between 1 and 6.")
+            builder.setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+            builder.setCancelable(false)
+            builder.show()
         }
     }
+
 
     private fun updateDiceImage(number: Int) {
         val drawableResource = when (number) {
