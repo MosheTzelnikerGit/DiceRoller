@@ -5,19 +5,32 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_vertical"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:padding="16dp">
 
+    <!-- תצוגת קובייה -->
     <ImageView
         android:id="@+id/dice_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/dice_1"/>
+        android:src="@drawable/dice_1" />
 
+    <!-- שדה קלט להכניס את הניחוש -->
+    <EditText
+        android:id="@+id/etGuess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="Enter your guess (1-6)"
+        android:layout_marginTop="16dp" />
+
+    <!-- כפתור Roll -->
     <Button
         android:id="@+id/btnRoll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/roll" />
+        android:text="Roll"
+        android:layout_marginTop="16dp" />
 </LinearLayout>
