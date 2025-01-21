@@ -7,12 +7,12 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/tvDiceResult"
+    <ImageView
+        android:id="@+id/dice_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:text="1" />
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/dice_1"/>
 
     <Button
         android:id="@+id/btnRoll"
