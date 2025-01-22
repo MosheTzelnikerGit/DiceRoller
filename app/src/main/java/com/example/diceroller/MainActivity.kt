@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
@@ -13,7 +12,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var diceImage: ImageView
     lateinit var etGuess: EditText
     lateinit var btnRoll: Button
-    var rolledNumber = 0
+    var rolledNumber = 1
 
     lateinit var sharedPreferences: SharedPreferences
 
@@ -21,7 +20,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // איתור רכיבי הממשק
         diceImage = findViewById(R.id.dice_image)
         etGuess = findViewById(R.id.etGuess)
         btnRoll = findViewById(R.id.btnRoll)
@@ -30,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("DiceRollerPreferences", MODE_PRIVATE)
 
 
-        rolledNumber = sharedPreferences.getInt("lastRoll", 0)
+        rolledNumber = sharedPreferences.getInt("lastRoll", 1)
         updateDiceImage(rolledNumber)
 
         btnRoll.setOnClickListener {
